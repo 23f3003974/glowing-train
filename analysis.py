@@ -3,9 +3,6 @@ from sklearn.model_selection import train_test_split
 
 import hashlib
 from sklearn.datasets import load_breast_cancer
-import os
-
-
 
 
 # Your unique parameters
@@ -16,7 +13,8 @@ test_size = 0.2
 # Load dataset and train
 data = load_breast_cancer()
 X_train, X_test, y_train, y_test = train_test_split(
-    data.data, data.target,
+    data.data,
+    data.target,
     test_size=test_size,
     random_state=random_state,
 )
@@ -33,17 +31,8 @@ print(f"Accuracy: {acc:.4f}")
 # Compute verification hash
 
 
-
-
-
 verify_input = f"n{n_estimators}:r{random_state}:acc{acc:.6f}"
 verify = hashlib.sha256(verify_input.encode()).hexdigest()[:12]
 
 
-
-
 print(f"Verify: {verify}")
-
-
-
-
